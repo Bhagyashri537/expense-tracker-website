@@ -1,12 +1,23 @@
 
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import SignUp from './components/SignUp';
+import Header from './components/Pages/Header';
+import WelCome from './components/Pages/Welcome';
+import Login from './components/Pages/Login';
+import SignUp from './components/Pages/SignUp';
+//import SignUp from './components/Pages/SignUp';
 
 function App() {
   return (
-    <div>
-      <SignUp/>
-    </div>
+    <BrowserRouter>
+     <Routes>
+      <Route path='/' element={<Header/>}>
+        <Route path='/login' element={<Login/>} />
+        <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/welcome' element={<WelCome/>}/>
+      </Route>
+     </Routes>
+    </BrowserRouter>
   );
 }
 
