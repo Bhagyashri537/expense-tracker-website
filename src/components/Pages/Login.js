@@ -65,7 +65,7 @@ const Login = () => {
      <div className="bg-gradient-to-r from-purple-100 to-blue-50 ">
       <div className="flex flex-col items-center justify-center pt-32 pb-32   ">
        
-        <div className="px-10 py-10 text-left bg-white shadow-lg pl-28 pr-28 rounded-lg">
+        <div className="px-10 py-10 text-left bg-white shadow-2xl pl-28 pr-28 rounded-2xl">
           <h3 className="text-2xl font-bold text-center">
            Login
           </h3>
