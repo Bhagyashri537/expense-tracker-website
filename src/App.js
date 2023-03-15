@@ -6,6 +6,7 @@ import WelCome from './components/Pages/Welcome';
 import Login from './components/Pages/Login';
 import SignUp from './components/Pages/SignUp';
 import CompleteProfile from './components/Pages/CompleteProfle';
+import NewPassword from './components/Pages/NewPassword';
 //import SignUp from './components/Pages/SignUp';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/welcome' element={<WelCome/>}/>
         <Route path='/completeprofile' element={<CompleteProfile/>}/>
+        <Route path='/newpassword' element={<NewPassword/>}/>
       </Route>
      </Routes>
     </BrowserRouter>

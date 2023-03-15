@@ -1,5 +1,6 @@
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const Login = () => {
   const navigate = useNavigate()
@@ -59,13 +60,12 @@ const Login = () => {
         alert(error.message);
       });
   };
-
   return (
     <>
      <div className="bg-gradient-to-r from-purple-100 to-blue-50 ">
       <div className="flex flex-col items-center justify-center pt-32 pb-32   ">
        
-        <div className="px-10 py-10 text-left bg-white shadow-2xl pl-28 pr-28 rounded-2xl">
+        <div className="px-10 py-10 text-left bg-white shadow-2xl pl-28 pr-28 rounded-2xl border-2  border-indigo-300">
           <h3 className="text-2xl font-bold text-center">
            Login
           </h3>
@@ -94,6 +94,8 @@ const Login = () => {
                   className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                 />
               </div>
+              
+               <h2>  <Link to="/newpassword" className="text-blue-600 decoration-2 hover:underline font-medium" >Forgot Password ??</Link></h2>
               
               <div className="flex items-baseline justify-between">
                 <button className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">
