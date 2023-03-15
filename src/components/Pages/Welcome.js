@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import AuthContext from "../Store/auth-context";
 import { Link, useNavigate } from "react-router-dom";
+import Expense from "./Expenses";
 
 const WelCome = () => {
   const authCtx = useContext(AuthContext);
@@ -47,8 +48,9 @@ const WelCome = () => {
   }
   return (
     <div>
-      <div className="flex justify-end pb-2 bg-blue-900 pr-14 font-bold hover:text-yellow-400 text-white" >
+      <div className="flex justify-end pb-2 bg-blue-900 pr-5 font-bold hover:text-yellow-400 text-white" >
         <button onClick={logoutHandler}>LogOut</button>
+        <button className="pl-3" onClick={verifyEmail}>Verify Email</button>
       </div>
       <div className="flex justify-end">
         <h3 className="float-left text-neutral-400">
@@ -59,12 +61,12 @@ const WelCome = () => {
         </h3>
       </div>
       <div className="flex justify-center pt-10 ">
-        <h2 className=" font-extrabold text-orange-200">
-          welcome to expense tracker
+        <h2 className=" font-extrabold text-cyan-700 pb-8 text-4xl">
+          Welcome To Expense Tracker
         </h2>
-        <button onClick={verifyEmail}>Verify Email</button>
+       
       </div>
-      
+      <Expense/>
     </div>
   );
 };
