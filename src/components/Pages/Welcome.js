@@ -1,8 +1,10 @@
-
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../Store/auth-context";
+import { Link, useNavigate } from "react-router-dom";
 
 const WelCome = () => {
-  
+  const authCtx = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const verifyEmail = () => {
     let token = localStorage.getItem('token')
@@ -38,8 +40,16 @@ const WelCome = () => {
         alert(err.message);
       });
   };
+  const logoutHandler = () => {
+    authCtx.logOut();
+     navigate("/")
+   
+  }
   return (
     <div>
+      <div className="flex justify-end pb-2 bg-blue-900 pr-14 font-bold hover:text-yellow-400 text-white" >
+        <button onClick={logoutHandler}>LogOut</button>
+      </div>
       <div className="flex justify-end">
         <h3 className="float-left text-neutral-400">
           Your profile is incomplete{" "}
@@ -54,6 +64,7 @@ const WelCome = () => {
         </h2>
         <button onClick={verifyEmail}>Verify Email</button>
       </div>
+      
     </div>
   );
 };
