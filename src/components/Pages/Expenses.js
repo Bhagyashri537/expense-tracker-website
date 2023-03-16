@@ -65,6 +65,25 @@ const Expense = () => {
   useEffect(()=>{
     getSaveData()
   },[])
+
+  const deleteHandler = (id) => {
+    fetch(`https://new-react-project-75f7e-default-rtdb.firebaseio.com/expense/${id}.json`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    }).then((data) => {
+       getSaveData()
+      
+    })
+  }
+  const Edithandler = (item)=>{
+
+   setAmount(item.amount)
+   setCategory(item.category)
+   setDescription(item.description)
+    deleteHandler(item.id)
+}
   
  
   return (
@@ -102,13 +121,13 @@ const Expense = () => {
           </div>
         </form>
       </div>
-      {list.map((item) => {
+      {list.map((item, index) => {
         return (
-          <div  className="flex justify-center ">
+          <div key={index} className="flex justify-center ">
             <li className="font-semibold p-2">
-              Rs.{item.amount} - {item.category} - {item.description}
-              <button className=" bg-green-300 rounded-lg pl-2 pr-2">Edit</button>
-              <button className=" bg-red-300 rounded-lg pl-2 pr-2">Remove</button>
+              Rs.{item.amount} - {item.category} - {item.description} 
+              <button  onClick={()=> Edithandler(item)} className=" bg-green-300 rounded-lg pl-2 pr-2">Edit</button>
+              <button  onClick={() => {deleteHandler(item.id)}} className=" bg-red-300 rounded-lg pl-2 pr-2">Remove</button>
             </li>
           </div>
         );
