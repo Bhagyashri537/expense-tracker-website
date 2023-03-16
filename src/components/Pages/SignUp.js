@@ -64,10 +64,10 @@ const SignUp = () => {
 
   return (
     <>
-     <div className="bg-gradient-to-r from-purple-100 to-blue-50 ">
+     <div className="bg-gradient-to-r from-pink-50 to-blue-200 ">
       <div className="flex flex-col items-center justify-center pt-32 pb-32   ">
        
-        <div className="px-10 py-10 text-left bg-white shadow-lg pl-28 pr-28 rounded-lg">
+        <div className="px-10 py-10 text-left bg-white border-2 border-indigo-300 shadow-lg pl-28 pr-28 rounded-lg">
           <h3 className="text-2xl font-bold text-center">
            SignUp
           </h3>
