@@ -1,5 +1,7 @@
 import { useRef } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { authAction } from "../Store/authSlice";
 
 
 const Login = () => {
@@ -8,15 +10,18 @@ const Login = () => {
   const passwordref = useRef();
   
   
-
+  const dispatch = useDispatch()
   
   const submitHandler = (e) => {
     e.preventDefault();
 
+   
+
     const enteredEmail = emailref.current.value;
     const enteredPassword = passwordref.current.value;
+    const replacemail = enteredEmail.replace("@",'').replace(".",'')
     
-    localStorage.setItem("email", enteredEmail)
+    
     
     
     fetch( "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCNgmjZ6lbRgU8TeM-YkpprB1uk9jhuNcg", {
@@ -45,13 +50,17 @@ const Login = () => {
               throw new Error(errorMessage);
             }
 
-            console.log(data);
+            
           });
         }
       })
       .then((data) => {
-        localStorage.setItem('token', data.idToken)
+        // console.log(data)
+        
         console.log(data.idToken)
+        localStorage.setItem('key' , replacemail)
+        dispatch(authAction.login(data.idToken))
+       
         alert("Login successful");
         navigate('/welcome')
        
@@ -60,6 +69,7 @@ const Login = () => {
         alert(error.message);
       });
   };
+   
   return (
     <>
      <div className="bg-gradient-to-r from-purple-100 to-blue-50 ">

@@ -1,11 +1,13 @@
-import { useContext } from "react";
-import AuthContext from "../Store/auth-context";
+
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { authAction } from "../Store/authSlice";
 import Expense from "./Expenses";
 
 const WelCome = () => {
-  const authCtx = useContext(AuthContext);
+  //const authCtx = useContext(AuthContext);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const verifyEmail = () => {
     let token = localStorage.getItem('token')
@@ -42,7 +44,8 @@ const WelCome = () => {
       });
   };
   const logoutHandler = () => {
-    authCtx.logOut();
+    dispatch(authAction.logout())
+    localStorage.removeItem('key')
      navigate("/")
    
   }

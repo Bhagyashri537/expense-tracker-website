@@ -1,5 +1,7 @@
 //import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { authAction } from "../Store/authSlice";
 
 const SignUp = () => {
   
@@ -7,7 +9,7 @@ const SignUp = () => {
   const passwordref = useRef();
   const confirmPasswordRef = useRef();
 
-  
+  const dispatch = useDispatch()
 
   
   const submitHandler = (e) => {
@@ -54,6 +56,10 @@ const SignUp = () => {
         }
       })
       .then((data) => {
+        // dispatch(authAction.updateAuthInfo({
+        //   token : data.token,
+        //   email : emailref.current.value
+        // }))
         alert("signUp successful");
        
       })
