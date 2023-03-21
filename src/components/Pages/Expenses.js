@@ -1,16 +1,21 @@
 import { useState,  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { expenseAction } from "../Store/expenseSlice";
+import { featureAction } from "../Store/featureSlice";
+
 const Expense = () => {
     const expenseData = useSelector(store => store.expense.expenses)
-    //const amount1 = useSelector(store => store.expense.totalAmount) 
-    console.log(expenseData)
+   
   
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  //const [list, setList] = useState([]);
-    const dispatch = useDispatch()
+ 
+    const dispatch = useDispatch() 
+    const showthemebutton = () => {
+      dispatch(featureAction.ShowActiveFeature())
+    }
+   
     const expense = {
            amount :amount,
             category :category,
@@ -48,18 +53,14 @@ const Expense = () => {
   .then(data => {
     console.log(data)
     getSaveData()
-   
 
-   console.log('hii')
    
   })
    .catch(err => {
     alert(err.message)
   })
  
-   
-        
-   
+  
     setAmount("");
     setCategory("");
     setDescription("");
@@ -88,7 +89,7 @@ const Expense = () => {
         description: data[i].descroption})
     
     }
-   // setList(myarr)
+  
     dispatch(expenseAction.addExpenses(myarr))
   }).catch(err => {
     alert(err.message)
@@ -98,7 +99,7 @@ const Expense = () => {
   useEffect(()=>{
      getSaveData()
   },[])
-  const totalMoney =expenseData.reduce((accumulator, current) => parseInt(accumulator) + parseInt(current.amount), 0);
+  const totalAmount =expenseData.reduce((accumulator, current) => parseInt(accumulator) + parseInt(current.amount), 0);
 
   const deleteHandler = (id) => {
     fetch(`https://new-react-project-75f7e-default-rtdb.firebaseio.com/expense/${localStorage.getItem('key')}/${id}.json`, {
@@ -151,16 +152,14 @@ const Expense = () => {
             />
           </div>
           <div className="flex justify-center pt-5">
-          <button className="bg-slate-400 p-2 rounded-lg hover:bg-blue-500" type="submit">Add Expences</button>
-          {totalMoney >= 10000 && <button>active premium button</button>}
+          <button className="bg-slate-400 p-2 rounded-lg hover:bg-orange-300" type="submit">Add Expences</button>
+          
+          
           </div>
         </form>
       </div>
       {expenseData.map((item, index) => {
-        //   amount1.reduce((abc, currentValue) => {
-        //   return (abc += parseInt(currentValue.totalAmount))
-        // }, 0)
-      
+        
         return (
           <>
           <div key={index} className="flex justify-center ">
@@ -172,14 +171,19 @@ const Expense = () => {
               <button  onClick={() => {deleteHandler(item.id)}} className=" bg-red-300 rounded-lg pl-2 pr-2">Remove</button>
               
             </li>
-            
+             
           </div>
           
           </>
         );
       })}
-      <div>
-          <h3>total expense = {totalMoney} </h3></div>
+      <div className="flex justify-center">
+          <h3 className="font-bold text-lg underline ">total expense = Rs. {totalAmount} /- </h3>
+          
+          </div>
+          <div className="flex justify-center p-2">
+          {totalAmount >= 10000 && <button className=" bg-orange-300 rounded-lg p-2" onClick={showthemebutton}>premium</button>}
+          </div>
     </>
   );
 };

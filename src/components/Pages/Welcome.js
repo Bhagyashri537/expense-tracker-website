@@ -1,14 +1,15 @@
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { authAction } from "../Store/authSlice";
 import Expense from "./Expenses";
 
 const WelCome = () => {
-  //const authCtx = useContext(AuthContext);
+  
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-
+  
+   const dispatch = useDispatch()
+  
   const verifyEmail = () => {
     let token = localStorage.getItem('token')
     fetch(
@@ -47,13 +48,17 @@ const WelCome = () => {
     dispatch(authAction.logout())
     localStorage.removeItem('key')
      navigate("/")
+
+    
    
   }
   return (
     <div>
-      <div className="flex justify-end pb-2 bg-blue-900 pr-5 font-bold hover:text-yellow-400 text-white" >
+      <div className="flex justify-end pb-5 bg-blue-900 pr-5 font-bold hover:text-yellow-400 text-white" >
         <button onClick={logoutHandler}>LogOut</button>
         <button className="pl-3" onClick={verifyEmail}>Verify Email</button>
+        
+       
       </div>
       <div className="flex justify-end">
         <h3 className="float-left text-neutral-400">
@@ -64,7 +69,7 @@ const WelCome = () => {
         </h3>
       </div>
       <div className="flex justify-center pt-10 ">
-        <h2 className=" font-extrabold text-cyan-700 pb-8 text-4xl">
+        <h2 className=" font-extrabold text-orange-400 pb-8 text-4xl">
           Welcome To Expense Tracker
         </h2>
        

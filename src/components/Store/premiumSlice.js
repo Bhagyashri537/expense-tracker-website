@@ -5,12 +5,13 @@ const initialpremiumState = {
 }
 
 const premiumSlice = createSlice({
-    name : 'premium_feature',
+    name : 'darktheme',
     initialState : initialpremiumState,
     reducers : {
-        addPremiumFeature(state) {
-             
-        }
+        toggleDarkMode : (state) =>  {
+             state.showDarkTheme = !state.showDarkTheme
+        },
+       
     }
 })
 
@@ -18,3 +19,4 @@ const premiumSlice = createSlice({
 export const premiumActions = premiumSlice.actions
 
 export default premiumSlice.reducer
+
